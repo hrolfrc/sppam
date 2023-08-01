@@ -46,6 +46,7 @@ def lp_weights(X, y):
     Returns:
         weights
 
+    References:
 
         1.  Classification of patterns using LP
         https://www.stat.cmu.edu/~ryantibs/convexopt-F13/scribes/lec2.pdf
@@ -54,11 +55,6 @@ def lp_weights(X, y):
         Calf looks similar to dual problem on slide 14
         https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2005.pdf
 
-        References:
-            [1] Sean J. Welleck, Efficient AUC Optimization for Information Ranking Applications, IBM USA (2016)
-            [2] Burges, C.J.: From ranknet to lambdarank to lambdamart: An overview. Learning (2010)
-            [3] Calders, T., Jaroszewicz, S.: Efficient auc optimization for classification.
-            Knowledge Discovery in Databases. (2007)
 
     Examples:
         >>> from sklearn.datasets import make_classification
