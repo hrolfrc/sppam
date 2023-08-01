@@ -12,15 +12,14 @@ Quick Start
     from sppam import SPPAM
     from sklearn.datasets import make_classification
     from sklearn.model_selection import train_test_split
-
-Make a classification problem
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    from sklearn.metrics import roc_auc_score
+    import numpy as np
 
 .. code:: ipython2
 
-    seed = 42
+    seed = 43
     X, y = make_classification(
-        n_samples=30,
+        n_samples=100,
         n_features=5,
         n_informative=2,
         n_redundant=2,
@@ -48,6 +47,4 @@ Get the score on unseen data
 
 .. parsed-literal::
 
-    1.0
-
-
+    0.88

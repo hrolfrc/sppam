@@ -8,7 +8,7 @@ The SPPAM (Saddle Point Problem for AUC Maximization) API
 
 
 Classifier
-=========
+==========
 
 .. autosummary::
    :toctree: generated/
