@@ -2,7 +2,7 @@
 
 |ReadTheDocs|_
 
-.. |ReadTheDocs| image:: https://readthedocs.org/projects/scorelp/badge/?version=latest
+.. |ReadTheDocs| image:: https://readthedocs.org/projects/sppam/badge/?version=latest
 .. _ReadTheDocs: https://sppam.readthedocs.io/en/latest/?badge=latest
 
 SPPAM - Saddle point problem for AUC maximization

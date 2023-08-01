@@ -3,11 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to scorelp's documentation!
+Welcome to sppam's documentation!
 ============================================
 
-This project is a reference implementation to anyone who wishes to develop
-scikit-learn compatible classes.
+This project develops the SPPAM classifier.
 
 .. toctree::
    :maxdepth: 2
@@ -34,17 +33,17 @@ scikit-learn compatible classes.
 `Getting started <quick_start.html>`_
 -------------------------------------
 
-Information regarding this template and how to modify it for your own project.
+Information regarding SPPAM
 
 `User Guide <user_guide.html>`_
 -------------------------------
 
-An example of narrative documentation.
+The user guide
 
 `API Documentation <api.html>`_
 -------------------------------
 
-An example of API documentation.
+The API documentation.
 
 `Examples <auto_examples/index.html>`_
 --------------------------------------
