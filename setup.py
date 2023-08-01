@@ -48,7 +48,9 @@ DOWNLOAD_URL = 'https://github.com/hrolfrc/sppam'
 VERSION = _version.__version__
 INSTALL_REQUIRES = ['numpy', 'scipy', 'scikit-learn']
 CLASSIFIERS = ['Intended Audience :: Science/Research',
-               'Intended Audience :: Machine Learning Engineers',
+               'Intended Audience :: Developers',
+               'Topic :: Scientific/Engineering :: Artificial Intelligence',
+               'Topic :: Scientific/Engineering :: Mathematics',
                'Development Status :: 2 - Pre-Alpha',
                'License :: OSI Approved',
                'Topic :: Scientific/Engineering',
