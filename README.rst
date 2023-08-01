@@ -1,6 +1,9 @@
 .. -*- mode: rst -*-
 
-|ReadTheDocs|_
+|Travis|_ |ReadTheDocs|_
+
+.. |Travis| image:: https://travis-ci.org/scikit-learn-contrib/project-template.svg?branch=master
+.. _Travis: https://app.travis-ci.com/github/hrolfrc/sppam
 
 .. |ReadTheDocs| image:: https://readthedocs.org/projects/sppam/badge/?version=latest
 .. _ReadTheDocs: https://sppam.readthedocs.io/en/latest/?badge=latest
