@@ -4,7 +4,7 @@ Plot the ROC curve
 =============================
 
 An example plot of the Receiver Operating Characteristic (ROC)
-curve for SLP :class:`sppam.sppam.SPPAM`
+curve for SLP :class:`SPPAM`
 on the breast cancer dataset.  We want an area under the
 curve (AUC) that is near 1.
 
