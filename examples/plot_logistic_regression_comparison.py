@@ -1,11 +1,10 @@
 """
 
 ======================================
-Compare SLP with LogisticRegression
+Compare SPPAM with LogisticRegression
 ======================================
 
-A comparison of LogisticRegression and sppamCV including
-:class:`sppam.sppam.SPPAM`
+A comparison of LogisticRegression and :class:`SPPAM`
 """
 
 import numpy as np

@@ -4,7 +4,7 @@
 SPPAM comparison plot
 ===========================
 
-A classifier comparison plot including :class:`sppam.sppam.SPPAM`
+A classifier comparison plot including :class:`SPPAM`
 """
 import warnings
 
