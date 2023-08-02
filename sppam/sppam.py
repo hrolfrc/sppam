@@ -10,6 +10,8 @@ https://www.frontiersin.org/articles/10.3389/fams.2019.00030/full#B5
 
 """
 
+from collections import Counter
+
 import numpy as np
 from ortools.linear_solver.pywraplp import Solver
 from sklearn.base import BaseEstimator, ClassifierMixin
@@ -75,17 +77,17 @@ def lp_weights(X, y):
         >>> w_d, status_d = lp_weights(X_d, y_d)
 
         >>> np.round(w_d, 2).tolist()
-        [-1.0, -1.0, 1.0, 0.3, -0.82, -1.0, -1.0, -1.0, -1.0, -1.0]
+        [-1.0, -0.39, -0.7, 0.43, -0.24, 0.67, -0.56, -1.0, -1.0, -1.0]
 
         The lp solver identifies good initial weights.
         >>> auc = roc_auc_score(y_true=y_d, y_score=predict(X_d, w_d))
         >>> np.round(auc, 2)
-        0.96
+        0.99
 
         Scaling the weights gives the same predicted score
         >>> auc = roc_auc_score(y_true=y_d, y_score=scaled_predict(X_d, w_d))
         >>> np.round(auc, 2)
-        0.96
+        0.99
 
     """
 
@@ -103,14 +105,16 @@ def lp_weights(X, y):
     if not solver:
         raise RuntimeError("GLOP solver unavailable")
 
+    n_plus = Counter(y)[1]
+    n_minus = Counter(y)[0]
     # w[i] is 0 if feature i is excluded
     # otherwise the weight is 1 or -1
     w = {}
     for j in feature_range:
         w[j] = solver.NumVar(-1, 1, 'w[%i]' % j)
 
-    pos = sum([X[i][j] * w[j] for j in feature_range for i in sample_range if y[i] == 1])
-    neg = sum([X[i][j] * w[j] for j in feature_range for i in sample_range if y[i] == 0])
+    pos = (1 / n_plus) * sum([X[i][j] * w[j] for j in feature_range for i in sample_range if y[i] == 1])
+    neg = (1 / n_minus) * sum([X[i][j] * w[j] for j in feature_range for i in sample_range if y[i] == 0])
 
     # the slack variables, p, significantly increase run-time.
     # if complexity == 'high':
