@@ -94,7 +94,6 @@ def lp_weights(X, y):
     feature_range = list(range(X.shape[1]))
     sample_range = list(range(X.shape[0]))
 
-    # solver = Solver.CreateSolver('GLOP')
     solver = Solver.CreateSolver('GLOP')
 
     # The following recommendation to improve GLOP performance degrades the AUC.
@@ -105,8 +104,11 @@ def lp_weights(X, y):
     if not solver:
         raise RuntimeError("GLOP solver unavailable")
 
-    n_plus = Counter(y)[1]
-    n_minus = Counter(y)[0]
+    # n_plus and n_minus are the numbers of samples of the positive and negative cases.
+    # protect against division by zero.
+    n_plus = max(Counter(y)[1], 1)
+    n_minus = max(Counter(y)[0], 1)
+
     # w[i] is 0 if feature i is excluded
     # otherwise the weight is 1 or -1
     w = {}
