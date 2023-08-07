@@ -154,8 +154,8 @@ def lp_weights(X, y):
 class SPPAM(ClassifierMixin, BaseEstimator):
     """ The SPPAM (Saddle Point Problem for AUC Maximization) classifier
 
-        Attributes
-        ----------
+    Attributes
+    ----------
         coef_ : array of shape (n_features, )
             Estimated coefficients for the linear fit problem.  Only
             one target should be passed, and this is a 1D array of length
@@ -170,37 +170,37 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         fit_time_ : float
             The number of seconds to fit X to y
 
-        Examples
-        --------
-            >>> import numpy
-            >>> from sklearn.datasets import make_classification as mc
-            >>> X, y = mc(n_features=2, n_redundant=0, n_informative=2, n_clusters_per_class=1, random_state=42)
-            >>> numpy.round(X[0:3, :], 2)
-            array([[ 1.23, -0.76],
-                   [ 0.7 , -1.38],
-                   [ 2.55,  2.5 ]])
+    Examples
+    --------
+        >>> import numpy
+        >>> from sklearn.datasets import make_classification as mc
+        >>> X, y = mc(n_features=2, n_redundant=0, n_informative=2, n_clusters_per_class=1, random_state=42)
+        >>> numpy.round(X[0:3, :], 2)
+        array([[ 1.23, -0.76],
+               [ 0.7 , -1.38],
+               [ 2.55,  2.5 ]])
 
-            >>> y[0:3]
-            array([0, 0, 1])
+        >>> y[0:3]
+        array([0, 0, 1])
 
-            >>> cls = SPPAM().fit(X, y)
-            >>> cls.score(X, y)
-            0.95
+        >>> cls = SPPAM().fit(X, y)
+        >>> cls.score(X, y)
+        0.95
 
-            >>> np.round(cls.coef_, 4)
-            array([-0.2463,  1.    ])
+        >>> np.round(cls.coef_, 4)
+        array([-0.2463,  1.    ])
 
-            >>> numpy.round(cls.score(X, y), 2)
-            0.95
+        >>> numpy.round(cls.score(X, y), 2)
+        0.95
 
-            >>> cls.fit_time_ > 0
-            True
+        >>> cls.fit_time_ > 0
+        True
 
-            >>> cls.predict(np.array([[3, 5]]))
-            array([0])
+        >>> cls.predict(np.array([[3, 5]]))
+        array([0])
 
-            >>> cls.predict_proba(np.array([[3, 5]]))
-            array([[1., 0.]])
+        >>> cls.predict_proba(np.array([[3, 5]]))
+        array([[1., 0.]])
 
         """
 
