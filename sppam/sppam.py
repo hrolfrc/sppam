@@ -206,6 +206,7 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         """
 
     def __init__(self):
+        """ Initialize SPPAM """
         pass
 
     def fit(self, X, y):
@@ -290,13 +291,11 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         """Probability estimates for samples in X.
 
         Parameters:
-
             X : array-like of shape (n_samples, n_features)
                 Vector to be scored, where n_samples is the number of samples and
                 n_features is the number of features.
 
         Returns:
-
             T: array-like of shape (n_samples, n_classes)
                 Returns the probability of the sample for each class in the model,
                 where classes are ordered as they are in `self.classes_`.
