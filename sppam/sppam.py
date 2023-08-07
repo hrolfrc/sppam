@@ -173,6 +173,7 @@ class SPPAM(ClassifierMixin, BaseEstimator):
 
         Examples
         --------
+
             >>> import numpy
             >>> from sklearn.datasets import make_classification as mc
             >>> X, y = mc(n_features=2, n_redundant=0, n_informative=2, n_clusters_per_class=1, random_state=42)
@@ -214,16 +215,16 @@ class SPPAM(ClassifierMixin, BaseEstimator):
 
         Parameters
         ----------
-        X : {array-like, sparse matrix} of shape (n_samples, n_features)
-            Training vector, where n_samples is the number of samples and n_features is the number of features.
+            X : {array-like, sparse matrix} of shape (n_samples, n_features)
+                Training vector, where n_samples is the number of samples and n_features is the number of features.
 
-        y : array-like of shape (n_samples,)
-            Target vector relative to X.
+            y : array-like of shape (n_samples,)
+                Target vector relative to X.
 
         Returns
         -------
-        self
-            Fitted estimator.
+            self
+                Fitted estimator.
 
         """
         if y is None:
@@ -245,12 +246,14 @@ class SPPAM(ClassifierMixin, BaseEstimator):
     def decision_function(self, X):
         """ Identify confidence scores for the samples
 
-        Arguments:
+        Parameters
+        ----------
             X : array-like, shape (n_samples, n_features)
                 The training input features and samples
 
-        Returns:
-            the decision vector (n_samples)
+        Returns
+        -------
+            y_d : the decision vector (n_samples)
 
         """
         check_is_fitted(self, ['is_fitted_', 'X_', 'y_'])
@@ -267,13 +270,16 @@ class SPPAM(ClassifierMixin, BaseEstimator):
     def predict(self, X):
         """Predict class labels for samples in X.
 
-        Parameters:
+        Parameters
+        ----------
             X : {array-like, sparse matrix} of shape (n_samples, n_features)
                 The data matrix for which we want to get the predictions.
 
-        Returns:
+        Returns
+        -------
             y_pred : ndarray of shape (n_samples,)
                 Vector containing the class labels for each sample.
+
         """
         check_is_fitted(self, ['is_fitted_', 'X_', 'y_'])
         X = check_array(X)
@@ -290,13 +296,15 @@ class SPPAM(ClassifierMixin, BaseEstimator):
     def predict_proba(self, X):
         """Probability estimates for samples in X.
 
-        Parameters:
+        Parameters
+        ----------
             X : array-like of shape (n_samples, n_features)
                 Vector to be scored, where n_samples is the number of samples and
                 n_features is the number of features.
 
-        Returns:
-            T: array-like of shape (n_samples, n_classes)
+        Returns
+        -------
+            T : array-like of shape (n_samples, n_classes)
                 Returns the probability of the sample for each class in the model,
                 where classes are ordered as they are in `self.classes_`.
 
@@ -316,13 +324,15 @@ class SPPAM(ClassifierMixin, BaseEstimator):
     def transform(self, X):
         """ Reduce X to the features that contribute positive AUC.
 
-        Arguments:
+        Parameters
+        ----------
             X : array-like, shape (n_samples, n_features)
                 The training input features and samples
 
-        Returns:
+        Returns
+        -------
             X_r : array of shape [n_samples, n_selected_features]
-            The input samples with only the selected features.
+                The input samples with only the selected features.
 
         """
         check_is_fitted(self, ['is_fitted_', 'X_', 'y_'])
@@ -333,15 +343,17 @@ class SPPAM(ClassifierMixin, BaseEstimator):
     def fit_transform(self, X, y):
         """ Fit to the data, then reduce X to the features that contribute positive AUC.
 
-            Arguments:
-                X : array-like, shape (n_samples, n_features)
-                    The training input features and samples
+        Parameters
+        ----------
+            X : array-like, shape (n_samples, n_features)
+                The training input features and samples
 
-                y : array-like of shape (n_samples,)
-                    Target vector relative to X.
+            y : array-like of shape (n_samples,)
+                Target vector relative to X.
 
-            Returns:
-                X_r : array of shape [n_samples, n_selected_features]
+        Returns
+        -------
+            X_r : array of shape [n_samples, n_selected_features]
                 The input samples with only the selected features.
 
             """
