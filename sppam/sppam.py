@@ -103,6 +103,7 @@ def lp_weights(X, y):
 
     if not solver:
         raise RuntimeError("GLOP solver unavailable")
+    solver.SetTimeLimit(1000)
 
     # n_plus and n_minus are the numbers of samples of the positive and negative cases.
     # protect against division by zero.

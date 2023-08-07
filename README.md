@@ -1,5 +1,6 @@
 # Quick Start
 
+
 ```python
 from sppam import SPPAM
 from sklearn.datasets import make_classification
@@ -7,6 +8,7 @@ from sklearn.model_selection import train_test_split
 ```
 
 #### Make a classification problem
+
 
 ```python
 seed = 42

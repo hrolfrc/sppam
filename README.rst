@@ -1,12 +1,15 @@
 .. -*- mode: rst -*-
 
-|ReadTheDocs|_
+|CircleCI|_ |ReadTheDocs|_
+
+.. |CircleCI| image:: https://circleci.com/gh/hrolfrc/sppam.svg?style=shield
+.. _CircleCI: https://circleci.com/gh/hrolfrc/sppam
 
 .. |ReadTheDocs| image:: https://readthedocs.org/projects/sppam/badge/?version=latest
 .. _ReadTheDocs: https://sppam.readthedocs.io/en/latest/?badge=latest
 
 SPPAM - Saddle point problem for AUC maximization
-============================================================
+#####################################
 
 An AUC optimizing binomial classifier.
 
@@ -33,7 +36,7 @@ SPPAM is designed for use with scikit-learn_ pipelines and composite estimators.
 .. _`saddle point problem for AUC maximization`: https://www.frontiersin.org/articles/10.3389/fams.2019.00030/full
 
 Example
-------------------
+===========
 
 .. code:: ipython2
 
@@ -72,9 +75,12 @@ Get the score on unseen data
     cls.score(X_test, y_test)
 
 
+
+
 .. parsed-literal::
 
     1.0
+
 
 References
 ------------------
