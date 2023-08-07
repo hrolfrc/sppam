@@ -8,13 +8,14 @@
 .. |ReadTheDocs| image:: https://readthedocs.org/projects/sppam/badge/?version=latest
 .. _ReadTheDocs: https://sppam.readthedocs.io/en/latest/?badge=latest
 
-SPPAM - Saddle point problem for AUC maximization
+SPPAM
 #####################################
 
 An AUC optimizing binomial classifier.
 
 Contact
 ------------------
+
 Rolf Carlson hrolfrc@gmail.com
 
 Install
@@ -25,7 +26,7 @@ Use pip to install sppam.
 
 Introduction
 ------------------
-This is a python implementation of a classifier that endeavors to solve the `saddle point problem for AUC maximization`_. [1]
+This is a python implementation of a classifier that approximates the solution to the `saddle point problem for AUC maximization`_. [1]
 
 SPPAM provides classification and prediction for two classes, the binomial case.  Small to medium problems are supported.  This is research code and a work in progress.
 

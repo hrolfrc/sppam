@@ -9,7 +9,7 @@ Frontiers in Applied Mathematics and Statistics. 5. 10.3389/fams.2019.00030.
 https://www.frontiersin.org/articles/10.3389/fams.2019.00030/full#B5
 
 """
-
+import time
 from collections import Counter
 
 import numpy as np
@@ -57,6 +57,9 @@ def lp_weights(X, y):
         Calf looks similar to dual problem on slide 14
         https://people.eecs.berkeley.edu/~russell/classes/cs194/f11/lectures/CS194%20Fall%202011%20Lecture%2005.pdf
 
+        3. Natole Jr, Michael & Ying, Yiming & Lyu, Siwei. (2019).
+        Stochastic AUC Optimization Algorithms With Linear Convergence.
+        Frontiers in Applied Mathematics and Statistics. 5. 10.3389/fams.2019.00030.
 
     Examples:
         >>> from sklearn.datasets import make_classification
@@ -154,15 +157,53 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         Attributes
         ----------
 
-        classes_ : ndarray of shape (n_classes, )
-            A list of class labels known to the classifier.
-
-        coef_ : feature weights of shape (1, n_features).
+        coef_ : array of shape (n_features, )
+            Estimated coefficients for the linear fit problem.  Only
+            one target should be passed, and this is a 1D array of length
+            n_features.
 
         n_features_in_ : int
-            The number of features of the data passed to :meth:`fit`.
+            Number of features seen during :term:`fit`.
 
-    """
+        classes_ : list
+            The unique class labels
+
+        fit_time_ : float
+            The number of seconds to fit X to y
+
+        Examples
+        --------
+            >>> import numpy
+            >>> from sklearn.datasets import make_classification as mc
+            >>> X, y = mc(n_features=2, n_redundant=0, n_informative=2, n_clusters_per_class=1, random_state=42)
+            >>> numpy.round(X[0:3, :], 2)
+            array([[ 1.23, -0.76],
+                   [ 0.7 , -1.38],
+                   [ 2.55,  2.5 ]])
+
+            >>> y[0:3]
+            array([0, 0, 1])
+
+            >>> cls = SPPAM().fit(X, y)
+            >>> cls.score(X, y)
+            0.95
+
+            >>> np.round(cls.coef_, 4)
+            array([-0.2463,  1.    ])
+
+            >>> numpy.round(cls.score(X, y), 2)
+            0.95
+
+            >>> cls.fit_time_ > 0
+            True
+
+            >>> cls.predict(np.array([[3, 5]]))
+            array([0])
+
+            >>> cls.predict_proba(np.array([[3, 5]]))
+            array([[1., 0.]])
+
+        """
 
     def __init__(self):
         pass
@@ -192,12 +233,25 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         self.classes_ = unique_labels(y)
         self.X_ = X
         self.y_ = y
+
+        start = time.time()
         self.w_, self.status_ = lp_weights(X, y)
-        self.is_fitted_ = True
+        self.fit_time_ = time.time() - start
         self.coef_ = self.w_
+        self.is_fitted_ = True
         return self
 
     def decision_function(self, X):
+        """ Identify confidence scores for the samples
+
+        Arguments:
+            X : array-like, shape (n_samples, n_features)
+                The training input features and samples
+
+        Returns:
+            the decision vector (n_samples)
+
+        """
         check_is_fitted(self, ['is_fitted_', 'X_', 'y_'])
 
         X = self._validate_data(X, accept_sparse="csr", reset=False)
@@ -213,12 +267,10 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         """Predict class labels for samples in X.
 
         Parameters:
-
             X : {array-like, sparse matrix} of shape (n_samples, n_features)
                 The data matrix for which we want to get the predictions.
 
         Returns:
-
             y_pred : ndarray of shape (n_samples,)
                 Vector containing the class labels for each sample.
         """
@@ -249,7 +301,7 @@ class SPPAM(ClassifierMixin, BaseEstimator):
                 Returns the probability of the sample for each class in the model,
                 where classes are ordered as they are in `self.classes_`.
 
-            """
+        """
         check_is_fitted(self, ['is_fitted_', 'X_', 'y_'])
         X = check_array(X)
 
@@ -261,6 +313,40 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         )
         class_prob = np.column_stack((1 - y_proba, y_proba))
         return class_prob
+
+    def transform(self, X):
+        """ Reduce X to the features that contribute positive AUC.
+
+        Arguments:
+            X : array-like, shape (n_samples, n_features)
+                The training input features and samples
+
+        Returns:
+            X_r : array of shape [n_samples, n_selected_features]
+            The input samples with only the selected features.
+
+        """
+        check_is_fitted(self, ['is_fitted_', 'X_', 'y_'])
+        X = check_array(X)
+
+        return X[:, np.asarray(self.coef_).nonzero()]
+
+    def fit_transform(self, X, y):
+        """ Fit to the data, then reduce X to the features that contribute positive AUC.
+
+            Arguments:
+                X : array-like, shape (n_samples, n_features)
+                    The training input features and samples
+
+                y : array-like of shape (n_samples,)
+                    Target vector relative to X.
+
+            Returns:
+                X_r : array of shape [n_samples, n_selected_features]
+                The input samples with only the selected features.
+
+            """
+        return self.fit(X, y).transform(X)
 
     def _more_tags(self):
         return {
