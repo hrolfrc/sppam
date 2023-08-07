@@ -25,8 +25,7 @@ RocCurveDisplay.from_predictions(
     y_test,
     y_score[:, 1],
     name="Has breast cancer",
-    color="darkorange",
-    plot_chance_level=True
+    color="darkorange"
 )
 
 plt.axis("square")
