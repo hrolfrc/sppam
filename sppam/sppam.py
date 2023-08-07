@@ -156,7 +156,6 @@ class SPPAM(ClassifierMixin, BaseEstimator):
 
         Attributes
         ----------
-
         coef_ : array of shape (n_features, )
             Estimated coefficients for the linear fit problem.  Only
             one target should be passed, and this is a 1D array of length
@@ -173,7 +172,6 @@ class SPPAM(ClassifierMixin, BaseEstimator):
 
         Examples
         --------
-
             >>> import numpy
             >>> from sklearn.datasets import make_classification as mc
             >>> X, y = mc(n_features=2, n_redundant=0, n_informative=2, n_clusters_per_class=1, random_state=42)
@@ -356,7 +354,7 @@ class SPPAM(ClassifierMixin, BaseEstimator):
             X_r : array of shape [n_samples, n_selected_features]
                 The input samples with only the selected features.
 
-            """
+        """
         return self.fit(X, y).transform(X)
 
     def _more_tags(self):
