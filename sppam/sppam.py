@@ -44,16 +44,19 @@ def lp_weights(X, y):
     """
         Get the classification coefficients using LP.
 
-    Arguments:
+    Parameters
+    ----------
         X : array-like, shape (n_samples, n_features)
             The training input features and samples.
 
         y : ground truth vector
 
-    Returns:
+    Returns
+    -------
         weights
 
-    References:
+    References
+    ----------
 
         1.  Classification of patterns using LP
         https://www.stat.cmu.edu/~ryantibs/convexopt-F13/scribes/lec2.pdf
@@ -66,7 +69,8 @@ def lp_weights(X, y):
         Stochastic AUC Optimization Algorithms With Linear Convergence.
         Frontiers in Applied Mathematics and Statistics. 5. 10.3389/fams.2019.00030.
 
-    Examples:
+    Examples
+    --------
         >>> from sklearn.datasets import make_classification
         >>> from sklearn.metrics import roc_auc_score
 
