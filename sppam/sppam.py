@@ -1,6 +1,11 @@
 """
 The SPPAM (Saddle Point Problem for AUC Maximization)
 
+===============================================================
+Author: Rolf Carlson, Carlson Research, LLC <hrolfrc@gmail.com>
+License: 3-clause BSD
+===============================================================
+
 Implements F in:
 
 Natole Jr, Michael & Ying, Yiming & Lyu, Siwei. (2019).
@@ -106,7 +111,7 @@ def lp_weights(X, y):
 
     if not solver:
         raise RuntimeError("GLOP solver unavailable")
-    solver.SetTimeLimit(1000)
+    solver.SetTimeLimit(100000)
 
     # n_plus and n_minus are the numbers of samples of the positive and negative cases.
     # protect against division by zero.

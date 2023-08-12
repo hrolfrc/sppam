@@ -34,10 +34,10 @@ rng = np.random.RandomState(11)
 for _ in range(20):
     # Make a classification problem
     X, y_d = make_classification(
-        n_samples=50,
-        n_features=10,
-        n_informative=5,
-        n_redundant=2,
+        n_samples=1000,
+        n_features=100,
+        n_informative=50,
+        n_redundant=20,
         n_classes=2,
         hypercube=True,
         random_state=rng
@@ -51,6 +51,7 @@ for _ in range(20):
         acc = accuracy_score(y_true=y_d, y_pred=clf.fit(X_d, y_d).predict(X_d))
         score[desc]['AUC'].append(auc)
         score[desc]['Accuracy'].append(acc)
+        print('finished: ', desc)
 
 # compare the mean of the differences of auc
 diff = np.subtract(score['Logit']['AUC'], score['SPPAM']['AUC'])

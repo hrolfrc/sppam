@@ -1,3 +1,11 @@
+""" SPPAM tests
+
+===============================================================
+Author: Rolf Carlson, Carlson Research, LLC <hrolfrc@gmail.com>
+License: 3-clause BSD
+===============================================================
+
+"""
 import pytest
 from sklearn.datasets import load_iris
 
