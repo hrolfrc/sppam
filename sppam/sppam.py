@@ -237,7 +237,7 @@ class SPPAM(ClassifierMixin, BaseEstimator):
         if y is None:
             raise ValueError('requires y to be passed, but the target y is None')
 
-        X, y = check_X_y(X, y)
+        X, y = check_X_y(X, y, accept_sparse=False)
         self.n_features_in_ = X.shape[1]
         self.classes_ = unique_labels(y)
         self.X_ = X
